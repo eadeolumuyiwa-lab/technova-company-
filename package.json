@@ -1,0 +1,19 @@
+{
+  "name": "technova-company",
+  "version": "1.0.0",
+  "description": "TechNova - Innovation Without Limits",
+  "main": "Newwebsites.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "technova",
+    "company",
+    "website"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
