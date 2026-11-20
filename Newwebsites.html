@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101c2c">
+  <title>TechNova | Innovation Without Limits</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --navy: #101c2c;
+      --navy-light: #1b2b40;
+      --cream: #f5f3ed;
+      --white: #ffffff;
+      --gold: #d6ad62;
+      --blue: #3d8ca8;
+      --text: #243347;
+      --muted: #68778a;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* LOGO */
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      text-decoration: none;
+    }
+
+    .brand-symbol {
+      width: 43px;
+      height: 43px;
+      color: #55c4d8;
+    }
+
+    .brand-accent {
+      color: var(--gold);
+    }
+
+    /* FRONT COVER */
+
+    .cover {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 35px 20px;
+      text-align: center;
+      color: white;
+      background:
+        radial-gradient(circle at 80% 20%, #29445b 0, transparent 35%),
+        linear-gradient(135deg, #101c2c, #172d43 60%, #24394b);
+    }
+
+    .cover-content {
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .cover-brand {
+      justify-content: center;
+      font-size: 34px;
+      margin-bottom: 45px;
+    }
+
+    .cover-brand .brand-symbol {
+      width: 58px;
+      height: 58px;
+    }
+
+    .cover-label,
+    .eyebrow {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    .cover h1 {
+      font-size: clamp(42px, 8vw, 75px);
+      line-height: 1.08;
+      margin: 18px 0;
+      letter-spacing: -2px;
+    }
+
+    .cover-description {
+      color: #d1dbe5;
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    .countdown-panel {
+      margin: 35px auto 25px;
+      padding: 25px;
+      border: 1px solid rgba(214, 173, 98, 0.6);
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      max-width: 480px;
+    }
+
+    .countdown-title {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .timer {
+      font-size: clamp(22px, 5vw, 34px);
+      font-weight: bold;
+      margin: 12px 0;
+      color: white;
+    }
+
+    .launch-date {
+      color: #c4d2df;
+      font-size: 14px;
+    }
+
+    .open-button,
+    .primary-button {
+      display: inline-block;
+      padding: 14px 25px;
+      border: none;
+      border-radius: 6px;
+      background: var(--gold);
+      color: #172333;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .open-button:hover,
+    .primary-button:hover {
+      background: #edc77f;
+      transform: translateY(-2px);
+    }
+
+    .open-button span {
+      margin-left: 12px;
+    }
+
+    .cover-footer {
+      margin-top: 45px;
+      color: #9aabba;
+      font-size: 11px;
+      letter-spacing: 3px;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      background: var(--navy);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-brand {
+      font-size: 23px;
+    }
+
+    .navbar nav {
+      display: flex;
+      gap: 22px;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .navbar nav a:hover {
+      color: var(--gold);
+    }
+
+    .menu-button {
+      display: none;
+      background: none;
+      color: white;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    /* MAIN HERO */
+
+    .main-hero {
+      padding: 115px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #e9edf0, #ffffff);
+    }
+
+    .main-hero h1 {
+      font-size: clamp(42px, 7vw, 68px);
+      line-height: 1.1;
+      margin: 20px 0;
+      color: var(--navy);
+    }
+
+    .main-hero h1 span {
+      color: var(--blue);
+    }
+
+    .main-hero > p:not(.eyebrow) {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    /* GENERAL SECTIONS */
+
+    .section {
+      padding: 80px 8%;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .section h2,
+    .founder-section h2,
+    .contact-section h2 {
+      color: var(--navy);
+      font-size: 34px;
+      margin: 10px 0 20px;
+    }
+
+    .section-description {
+      max-width: 680px;
+      margin: 0 auto;
+      color: var(--muted);
+    }
+
+    .section-soft {
+      background: #edf1f3;
+    }
+
+    /* SERVICES */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      max-width: 1000px;
+      margin: 35px auto 0;
+    }
+
+    .service-card {
+      background: white;
+      padding: 28px;
+      border-radius: 10px;
+      text-align: left;
+      border: 1px solid #dfe5e9;
+      transition: 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+    }
+
+    .service-icon {
+      color: var(--gold);
+      font-weight: bold;
+      font-size: 25px;
+      margin-bottom: 15px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PROJECTS */
+
+    .empty-projects {
+      max-width: 600px;
+      margin: 35px auto 0;
+      padding: 40px 20px;
+      background: #f4f6f7;
+      border: 1px dashed #b8c4ce;
+      border-radius: 12px;
+    }
+
+    .project-symbol {
+      font-size: 35px;
+      color: var(--gold);
+    }
+
+    .empty-projects h3 {
+      color: var(--navy);
+      margin: 10px 0;
+    }
+
+    .empty-projects p {
+      color: var(--muted);
+    }
+
+    /* NOVA AI */
+
+    .nova-section {
+      background: #edf1f3;
+    }
+
+    .chat-box {
+      max-width: 600px;
+      margin: 35px auto 15px;
+      background: white;
+      border: 1px solid #dce3e8;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    .chat-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--navy);
+      color: white;
+      padding: 17px;
+    }
+
+    .nova-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .chat-heading span {
+      color: #b9c6d2;
+      font-size: 12px;
+    }
+
+    .chat-messages {
+      min-height: 140px;
+      max-height: 260px;
+      overflow-y: auto;
+      padding: 18px;
+    }
+
+    .bot-message,
+    .user-message {
+      padding: 11px 14px;
+      margin-bottom: 10px;
+      border-radius: 9px;
+      max-width: 85%;
+      font-size: 14px;
+    }
+
+    .bot-message {
+      background: #edf1f3;
+      color: var(--text);
+    }
+
+    .user-message {
+      background: #dcecf1;
+      color: var(--navy);
+      margin-left: auto;
+    }
+
+    .chat-input {
+      display: flex;
+      gap: 8px;
+      padding: 14px;
+      border-top: 1px solid #e5e9ed;
+    }
+
+    .chat-input input {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      border: 1px solid #d5dde3;
+      border-radius: 6px;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 12px 20px;
+      background: var(--navy);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+    }
+
+    /* NOTIFICATIONS */
+
+    .notification-section {
+      background: white;
+    }
+
+    #notificationStatus {
+      color: var(--blue);
+    }
+
+    /* FOUNDER */
+
+    .founder-section {
+      padding: 70px 20px;
+      text-align: center;
+      color: white;
+      background: var(--navy-light);
+    }
+
+    .founder-section h2 {
+      color: white;
+    }
+
+    .founder-section h3 {
+      color: var(--gold);
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .founder-section p {
+      max-width: 650px;
+      margin: 8px auto;
+      color: #d0dae3;
+    }
+
+    /* CONTACT */
+
+    .contact-section {
+      padding: 75px 20px;
+      text-align: center;
+      background: #e9edf0;
+    }
+
+    .contact-section > p:not(.eyebrow) {
+      color: var(--muted);
+    }
+
+    .contact-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 25px 0 15px;
+    }
+
+    .contact-button {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--navy);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .whatsapp-button {
+      background: #237b58;
+    }
+
+    .contact-button:hover {
+      opacity: 0.85;
+    }
+
+    .phone-number {
+      font-weight: bold;
+      color: var(--navy) !important;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #0a1421;
+      color: #b9c6d2;
+      padding: 35px 20px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer-brand {
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .back-button {
+      margin-top: 18px;
+      padding: 10px 16px;
+      border: 1px solid #617286;
+      border-radius: 5px;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+    }
+
+    .back-button:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+      .navbar {
+        padding: 13px 5%;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .navbar nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--navy);
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 5% 20px;
+      }
+
+      .navbar nav.show {
+        display: flex;
+      }
+
+      .navbar nav a {
+        padding: 10px 0;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 65px 6%;
+      }
+
+      .main-hero {
+        padding: 85px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FRONT COVER -->
+  <main id="cover" class="cover">
+    <div class="cover-content">
+
+      <div class="brand cover-brand">
+        <svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M18 72 L42 25 L58 55 L76 25 L88 72"
+                fill="none" stroke="currentColor" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M31 72 H70" fill="none" stroke="#d6ad62"
+                stroke-width="5" stroke-linecap="round"/>
+          <circle cx="76" cy="25" r="6" fill="#d6ad62"/>
+        </svg>
+        <span>Tech<span class="brand-accent">Nova</span></span>
+      </div>
+
+      <p class="cover-label">A NEW ERA OF DIGITAL INNOVATION</p>
+      <h1>The Future<br>Starts Here.</h1>
+      <p class="cover-description">
+        Technology. Creativity. Innovation.
+        Discover what we are building.
+      </p>
+
+      <div class="countdown-panel">
+        <p class="countdown-title">OFFICIAL LAUNCH COUNTDOWN</p>
+        <div id="timer" class="timer">Loading...</div>
+        <p class="launch-date">01 January 2027</p>
+      </div>
+
+      <button class="open-button" onclick="openWebsite()">
+        Preview TechNova Website <span>→</span>
+      </button>
+
+      <p class="cover-footer">TECHNOVA • EST. 2026</p>
+    </div>
+  </main>
+
+  <!-- ACTUAL WEBSITE -->
+  <div id="website" class="website hidden">
+
+    <header class="navbar">
+      <a href="#home" class="brand nav-brand">
+        <svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M18 72 L42 25 L58 55 L76 25 L88 72"
+                fill="none" stroke="currentColor" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M31 72 H70" fill="none" stroke="#d6ad62"
+                stroke-width="5" stroke-linecap="round"/>
+          <circle cx="76" cy="25" r="6" fill="#d6ad62"/>
+        </svg>
+        <span>Tech<span class="brand-accent">Nova</span></span>
+      </a>
+
+      <button class="menu-button" onclick="toggleMenu()">☰</button>
+
+      <nav id="navLinks">
+        <a href="#home" onclick="closeMenu()">Home</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#services" onclick="closeMenu()">Services</a>
+        <a href="#projects" onclick="closeMenu()">Projects</a>
+        <a href="#nova" onclick="closeMenu()">Nova AI</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+      </nav>
+    </header>
+
+    <section class="main-hero" id="home">
+      <p class="eyebrow">WELCOME TO TECHNOVA</p>
+      <h1>We Build Digital<br><span>Possibilities.</span></h1>
+      <p>
+        Creating modern websites, software and innovative
+        digital solutions for individuals and businesses.
+      </p>
+      <a href="#services" class="primary-button">Discover Our Services</a>
+    </section>
+
+    <section id="about" class="section">
+      <p class="eyebrow">WHO WE ARE</p>
+      <h2>About TechNova</h2>
+      <p class="section-description">
+        TechNova is a technology company focused on creating
+        modern websites, software and innovative digital
+        solutions for individuals and businesses.
+      </p>
+    </section>
+
+    <section id="services" class="section section-soft">
+      <p class="eyebrow">WHAT WE DO</p>
+      <h2>Our Services</h2>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="service-icon">01</div>
+          <h3>Web Development</h3>
+          <p>Modern, responsive and professional websites.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">02</div>
+          <h3>Software Development</h3>
+          <p>Digital software solutions designed for real needs.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">03</div>
+          <h3>Mobile App Development</h3>
+          <p>Innovative mobile application experiences.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <p class="eyebrow">OUR WORK</p>
+      <h2>Our Projects</h2>
+      <p class="section-description">
+        Explore the digital solutions created by TechNova.
+      </p>
+
+      <div class="empty-projects">
+        <div class="project-symbol">✦</div>
+        <h3>Projects Coming Soon</h3>
+        <p>Our projects will appear here as they are published.</p>
+      </div>
+    </section>
+
+    <section id="nova" class="section nova-section">
+      <p class="eyebrow">YOUR DIGITAL ASSISTANT</p>
+      <h2>Meet Nova AI</h2>
+      <p class="section-description">
+        Your future digital assistant, designed to help you
+        explore ideas and find useful information.
+      </p>
+
+      <div class="chat-box">
+        <div class="chat-heading">
+          <div class="nova-avatar">N</div>
+          <div>
+            <h3>Nova AI</h3>
+            <span>TechNova Assistant</span>
+          </div>
+        </div>
+
+        <div id="chatMessages" class="chat-messages">
+          <p class="bot-message">
+            Hello! I'm Nova AI. What would you like to know?
+          </p>
+        </div>
+
+        <div class="chat-input">
+          <input id="userMessage" type="text"
+                 placeholder="Ask Nova something...">
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+      <p class="small-note">
+        AI responses will become available when the AI backend is connected.
+      </p>
+    </section>
+
+    <section class="section notification-section">
+      <p class="eyebrow">STAY CONNECTED</p>
+      <h2>TechNova Notifications</h2>
+      <p class="section-description">
+        Enable notifications to receive announcements,
+        launch updates and news about new projects.
+      </p>
+
+      <button class="primary-button" onclick="enableNotifications()">
+        Enable Notifications
+      </button>
+      <p id="notificationStatus" class="small-note"></p>
+    </section>
+
+    <section class="founder-section">
+      <p class="eyebrow">LEADERSHIP</p>
+      <h2>Meet Our CEO</h2>
+      <h3>Adeoluwa Ezekiel Adewunmi</h3>
+      <p>Founder and Chief Executive Officer of TechNova.</p>
+      <p>
+        Passionate about technology, innovation, creativity
+        and building modern digital solutions.
+      </p>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <p class="eyebrow">LET'S CONNECT</p>
+      <h2>Ready to Work With Us?</h2>
+      <p>Get in touch with TechNova today.</p>
+
+      <div class="contact-actions">
+        <a href="tel:+2349015006142" class="contact-button">
+          Call Us
+        </a>
+
+        <a href="https://wa.me/2349015006142?text=Hello%20TechNova%2C%20I%20would%20like%20to%20make%20an%20enquiry."
+           target="_blank" rel="noopener noreferrer"
+           class="contact-button whatsapp-button">
+          WhatsApp Us
+        </a>
+      </div>
+
+      <p class="phone-number">+234 901 500 6142</p>
+    </section>
+
+    <footer>
+      <div class="brand footer-brand">
+        <svg class="brand-symbol" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M18 72 L42 25 L58 55 L76 25 L88 72"
+                fill="none" stroke="currentColor" stroke-width="7"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M31 72 H70" fill="none" stroke="#d6ad62"
+                stroke-width="5" stroke-linecap="round"/>
+          <circle cx="76" cy="25" r="6" fill="#d6ad62"/>
+        </svg>
+        <span>Tech<span class="brand-accent">Nova</span></span>
+      </div>
+      <p>Innovation Without Limits.</p>
+      <p>© 2026 TechNova. All rights reserved.</p>
+      <button class="back-button" onclick="backToCover()">
+        Back to Launch Cover ↑
+      </button>
+    </footer>
+
+  </div>
+
+  <script>
+    // TECHNOVA LAUNCH COUNTDOWN
+    const launchDate = new Date("2027-01-01T00:00:00+01:00").getTime();
+
+    function updateCountdown() {
+      const now = Date.now();
+      const distance = launchDate - now;
+      const timer = document.getElementById("timer");
+
+      if (distance <= 0) {
+        timer.textContent = "TECHNOVA IS LIVE!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      timer.textContent =
+        `${days} Days : ${hours} Hours : ${minutes} Minutes : ${seconds} Seconds`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    // OPEN THE ACTUAL WEBSITE
+    function openWebsite() {
+      document.getElementById("cover").classList.add("hidden");
+      document.getElementById("website").classList.remove("hidden");
+      window.scrollTo(0, 0);
+    }
+
+    // RETURN TO THE FRONT COVER
+    function backToCover() {
+      document.getElementById("website").classList.add("hidden");
+      document.getElementById("cover").classList.remove("hidden");
+      window.scrollTo(0, 0);
+    }
+
+    // MOBILE NAVIGATION
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("show");
+    }
+
+    function closeMenu() {
+      document.getElementById("navLinks").classList.remove("show");
+    }
+
+    // NOVA AI INTERFACE
+    function sendMessage() {
+      const input = document.getElementById("userMessage");
+      const messages = document.getElementById("chatMessages");
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      const userMessage = document.createElement("p");
+      userMessage.className = "user-message";
+      userMessage.textContent = message;
+      messages.appendChild(userMessage);
+
+      const reply = document.createElement("p");
+      reply.className = "bot-message";
+      reply.textContent =
+        "I'm Nova AI. My AI service is not connected yet. My full assistant features will be available when the backend is installed.";
+      messages.appendChild(reply);
+
+      input.value = "";
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Allow Enter key to send a message
+    document.getElementById("userMessage").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    });
+
+    // NOTIFICATION PERMISSION
+    async function enableNotifications() {
+      const status = document.getElementById("notificationStatus");
+
+      if (!("Notification" in window)) {
+        status.textContent = "Your browser does not support notifications.";
+        return;
+      }
+
+      try {
+        const permission = await Notification.requestPermission();
+
+        if (permission === "granted") {
+          status.textContent =
+            "Permission granted. Real TechNova announcements will work after push notifications are connected to the backend.";
+        } else {
+          status.textContent =
+            "Notification permission was not granted.";
+        }
+      } catch (error) {
+        status.textContent = "Could not request notification permission.";
+      }
+    }
+  </script>
+</body>
+</html>
+
